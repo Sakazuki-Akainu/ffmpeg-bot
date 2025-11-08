@@ -6,13 +6,4 @@ services:
     dockerContext: .
     plan: free
     envVars:
-      - key: APP_ID
-        group: telegram-credentials
-      - key: API_HASH
-        group: telegram-credentials
-      - key: BOT_TOKEN
-        group: telegram-credentials
-      - key: OWNER
-        group: telegram-credentials
-      - key: THUMBNAIL
-        group: telegram-credentials
+      - fromGroup: telegram-credentials
