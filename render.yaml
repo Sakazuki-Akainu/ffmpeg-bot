@@ -7,40 +7,12 @@ services:
     plan: free
     envVars:
       - key: APP_ID
-        fromService:
-          type: envVarGroup
-          name: telegram-credentials
-          property: APP_ID
+        group: telegram-credentials
       - key: API_HASH
-        fromService:
-          type: envVarGroup
-          name: telegram-credentials
-          property: API_HASH
+        group: telegram-credentials
       - key: BOT_TOKEN
-        fromService:
-          type: envVarGroup
-          name: telegram-credentials
-          property: BOT_TOKEN
+        group: telegram-credentials
       - key: OWNER
-        fromService:
-          type: envVarGroup
-          name: telegram-credentials
-          property: OWNER
+        group: telegram-credentials
       - key: THUMBNAIL
-        fromService:
-          type: envVarGroup
-          name: telegram-credentials
-          property: THUMBNAIL
-envVarGroups:
-  - name: telegram-credentials
-    envVars:
-      - key: APP_ID
-        value: ""
-      - key: API_HASH
-        value: ""
-      - key: BOT_TOKEN
-        value: ""
-      - key: OWNER
-        value: ""
-      - key: THUMBNAIL
-        value: ""
+        group: telegram-credentials
