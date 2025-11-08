@@ -268,6 +268,3 @@ def health_check():
     return "OK", 200
 
 LOGS.info("Bot has started.")
-with bot:
-    bot.loop.run_until_complete(something())
-    bot.loop.run_forever()
