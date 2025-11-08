@@ -5,15 +5,16 @@ from hypercorn.asyncio import serve
 from bot.__main__ import app, something
 
 async def main():
-    # Create Hypercorn config for Flask
-    config = Config()
+    # Configure Hypercorn to bind to the Render-assigned port
     port = os.environ.get("PORT", "8080")
+    config = Config()
     config.bind = [f"0.0.0.0:{port}"]
+    config.keep_alive_timeout = 65
 
-    # Run your Telegram bot in background
+    # Start the Telegram bot in background
     asyncio.create_task(something())
 
-    # Serve Flask app for Render health checks
+    # Run Flask for health check endpoint
     await serve(app, config)
 
 if __name__ == "__main__":
