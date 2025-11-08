@@ -259,14 +259,7 @@ async def something():
 
 ########### Start ############
 
-LOGS.info("Bot has started.")
-with bot:
-    bot.loop.run_until_complete(something())
-    bot.loop.run_forever()
-
 from flask import Flask
-from threading import Thread
-import os
 
 app = Flask(__name__)
 
@@ -274,9 +267,7 @@ app = Flask(__name__)
 def health_check():
     return "OK", 200
 
-def run_flask_app():
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
-
-flask_thread = Thread(target=run_flask_app)
-flask_thread.start()
+LOGS.info("Bot has started.")
+with bot:
+    bot.loop.run_until_complete(something())
+    bot.loop.run_forever()
