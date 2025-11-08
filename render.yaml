@@ -1,9 +1,11 @@
 services:
-  - type: worker
+  - type: web
     name: telegram-video-compressor
     env: docker
     dockerfilePath: ./Dockerfile
     dockerContext: .
     plan: free
+    port: 10000
+    healthCheckPath: /health
     envVars:
       - fromGroup: telegram-credentials
