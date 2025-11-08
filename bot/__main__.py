@@ -263,3 +263,18 @@ LOGS.info("Bot has started.")
 with bot:
     bot.loop.run_until_complete(something())
     bot.loop.run_forever()
+
+from flask import Flask
+from threading import Thread
+
+app = Flask(__name__)
+
+@app.route("/health")
+def health_check():
+    return "OK", 200
+
+def run_flask_app():
+    app.run(host="0.0.0.0", port=10000)
+
+flask_thread = Thread(target=run_flask_app)
+flask_thread.start()
