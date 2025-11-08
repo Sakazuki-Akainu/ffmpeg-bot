@@ -5,7 +5,6 @@ services:
     dockerfilePath: ./Dockerfile
     dockerContext: .
     plan: free
-    port: 10000
     healthCheckPath: /health
     envVars:
       - fromGroup: telegram-credentials
