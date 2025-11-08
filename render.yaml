@@ -1,10 +1,11 @@
 services:
   - type: web
-    name: telegram-video-compressor
+    name: tg-video-compress
     env: docker
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
     plan: free
-    healthCheckPath: /health
+    autoDeploy: true
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python3 wsgi.py"
     envVars:
-      - fromGroup: telegram-credentials
+      - key: PORT
+        value: 8080
