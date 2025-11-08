@@ -1,0 +1,46 @@
+services:
+  - type: worker
+    name: telegram-video-compressor
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    envVars:
+      - key: APP_ID
+        fromService:
+          type: envVarGroup
+          name: telegram-credentials
+          property: APP_ID
+      - key: API_HASH
+        fromService:
+          type: envVarGroup
+          name: telegram-credentials
+          property: API_HASH
+      - key: BOT_TOKEN
+        fromService:
+          type: envVarGroup
+          name: telegram-credentials
+          property: BOT_TOKEN
+      - key: OWNER
+        fromService:
+          type: envVarGroup
+          name: telegram-credentials
+          property: OWNER
+      - key: THUMBNAIL
+        fromService:
+          type: envVarGroup
+          name: telegram-credentials
+          property: THUMBNAIL
+envVarGroups:
+  - name: telegram-credentials
+    envVars:
+      - key: APP_ID
+        value: ""
+      - key: API_HASH
+        value: ""
+      - key: BOT_TOKEN
+        value: ""
+      - key: OWNER
+        value: ""
+      - key: THUMBNAIL
+        value: ""
